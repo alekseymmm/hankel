@@ -2,9 +2,9 @@ pkg load communications
 pkg load parallel
 
 function result = CalcOnes()
-n = 64;
-m = 16;
-num_tests = 200;
+n = 32;
+m = 8;
+num_tests = 5000;
 result = [];
 for j = 1:num_tests
 
@@ -15,7 +15,7 @@ for j = 1:num_tests
   #    X(i) = gf(randint(1,1,[0, 255]), 8 ,285);%gf(2, 8, 285) ^ (i - 1);
   #    D(i) = gf(randint(1,1,[0, 255]), 8 ,285);
   #end
-  X = gf(randint(1, n+m, [0,255]), 8, 285);
+  X = gf(randperm(255)(1:(n+m)), 8, 285);
   C = CodingMatrix(n, m, X(1:n), X(n+1:end));
   
   num_ones = 0;
@@ -32,6 +32,10 @@ end
 endfunction
 #display("Calculation done.");
 
-num_cores = 32
-y = pararrayfun(num_cores, @CalcOnes, zeros(1,32))
-CalcOnes();
+num_cores = 4
+y = pararrayfun(num_cores, @CalcOnes, zeros(1,4));
+hist(y, 400);
+set(gca, 'XTick',min(y):400:max(y));
+set(gca, 'fontsize', 15);;
+set(get(gca,'child'),'FaceColor','green','EdgeColor','b');
+#CalcOnes();

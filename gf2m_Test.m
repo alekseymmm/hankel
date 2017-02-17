@@ -1,16 +1,16 @@
 pkg load communications
-a = gf(2, 8 ,285);
-b = gf(234, 8 , 285);
-d = gf(200, 8 , 285);
+#a = gf(2, 8 ,285);
+a = gf(234, 8 , 285);
+b = gf(200, 8 , 285);
 
-B = gf2matrix(b);
+A = gf2matrix(a);
 
-D = de2bi(d.x, 8, 2 ,"left-msb")';
+B = de2bi(d.x, 8, 2 ,"left-msb")';
 
-display("b*d = ")
-de2bi((b*d).x, 8, 2, "left-msb")'
-display("B*D = ")
-mod(B * D, 2)
+display("a*b = ")
+de2bi((a*b).x, 8, 2, "left-msb")'
+display("A*B = ")
+mod(A * B, 2)
 
 #ComputeWeight((b*d).x)
 
