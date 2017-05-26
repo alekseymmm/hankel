@@ -22,8 +22,8 @@
 ## Author:  <alekseym@am>
 ## Created: 2017-02-08
 
-function res = w_di(D, i, x)
-    res = gf(1, 8, 285);
+function res = w_di(D, i, x, field_order)
+    res = gf(1, field_order);
     
     for j = 1:length(D)
         if j == i

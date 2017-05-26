@@ -22,8 +22,8 @@
 ## Author:  <alekseym@am>
 ## Created: 2016-09-28
 
-function res = w_d(D, x)
-    res = gf(1, 8, 285);
+function res = w_d(D, x, field_order)
+    res = gf(1, field_order);
     
     for i = 1:length(D)
         if D(i) == x

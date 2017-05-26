@@ -1,11 +1,11 @@
-function A = gf2matrix(a)
+function A = gf2matrix(a, field_order)
 A = [];
 t = a;
 
 for i=1:8
-	column = de2bi(t.x, 8, 2 ,"left-msb")';
+	column = de2bi(t.x, field_order, 2 ,"left-msb")';
 	A = [column, A];
-	t = t * gf(2, 8 ,285);
+	t = t * gf(2, field_order);
 end;
 
 endfunction
