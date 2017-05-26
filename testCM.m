@@ -1,7 +1,7 @@
 pkg load communications
 pkg load parallel
 
-function [result, min_matix, min_points] = CalcOnes()
+function output = CalcOnes()
 n = 16;
 m = 4;
 field_order = 8;
@@ -41,13 +41,20 @@ for j = 1:num_tests
   end
   result = [result, num_ones]; 
 end
-
+  output.num_ones = result;
+  output.min_matix = min_matix;
+  output.min_points = min_points;
+  
 endfunction
 #display("Calculation done.");
 
-num_cores = 1
-[y, min_matrix, min_points] = CalcOnes();
-#y = pararrayfun(num_cores, @CalcOnes, zeros(1,num_cores));
+num_cores = 4
+#out = CalcOnes();
+out = pararrayfun(num_cores, @CalcOnes, zeros(1,num_cores));
+y = [];
+for i = 1:num_cores
+    y = [y, out(i).num_ones];
+end;
 hist(y, 400);
 set(gca, 'XTick',min(y):400:max(y));
 set(gca, 'fontsize', 15);;
