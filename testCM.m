@@ -4,9 +4,9 @@ pkg load parallel
 function output = CalcOnes()
 n = 16;
 m = 4;
-field_order = 8;
+field_order = 6;
 field_size = 2^field_order;
-num_tests = 5000;
+num_tests = 10000;
 result = [];
 
 min_matrix = [];
@@ -36,13 +36,13 @@ for j = 1:num_tests
   end
   if (num_ones < min_num_ones)
     min_num_ones = num_ones;
-    min_matix = C;
+    min_matrix = C;
     min_points = X;
   end
   result = [result, num_ones]; 
 end
   output.num_ones = result;
-  output.min_matix = min_matix;
+  output.min_matrix = min_matrix;
   output.min_points = min_points;
   
 endfunction
